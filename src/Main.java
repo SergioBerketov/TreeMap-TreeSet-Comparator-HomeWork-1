@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,9 +10,11 @@ public class Main {
         peoples.add(new Person("Anastasia", "Galickaja-Yamskayja", 8));
         peoples.add(new Person("Leonid", "Dudin", 78));
         peoples.add(new Person("Maxim", "Maximov", 19));
-        peoples.add(new Person("Alister", "Kvicha-Melinkovich-Savich",6));
+        peoples.add(new Person("Alister", "Kvicha-Melinkovich-Savich", 6));
 
-        Collections.sort(peoples, new PersonNobleComparator());
+        Predicate<Person> isYoungerEighteen = p -> p.age < 18;
+
+        peoples.removeIf(isYoungerEighteen);
         System.out.println(peoples);
     }
 }
